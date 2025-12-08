@@ -11,22 +11,31 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Build Changes Feed
-        run: npx ghcr.io/osmoscraft/osmosfeed:latest \
-              build --config feeds/changes/osmosfeed.json \
-              --output docs/changes
+      - name: Ensure docs folder exists
+        run: mkdir -p docs
 
-      - name: Build Blog Feed
-        run: npx ghcr.io/osmoscraft/osmosfeed:latest \
-              build --config feeds/blog/osmosfeed.json \
-              --output docs/blog
+      - name: Build ITC Changes
+        run: |
+          npx ghcr.io/osmoscraft/osmosfeed:latest \
+            build --config feeds/changes/osmosfeed.json --output docs/changes
 
-      - name: Build Incidents Feed
-        run: npx ghcr.io/osmoscraft/osmosfeed:latest \
-              build --config feeds/incidents/osmosfeed.json \
-              --output docs/incidents
+      - name: Build ITC Blog
+        run: |
+          npx ghcr.io/osmoscraft/osmosfeed:latest \
+            build --config feeds/blog/osmosfeed.json --output docs/blog
+
+      - name: Build ITC Incidents
+        run: |
+          npx ghcr.io/osmoscraft/osmosfeed:latest \
+            build --config feeds/incidents/osmosfeed.json --output docs/incidents
+
+      - name: Verify build output
+        run: |
+          echo "Docs content:"
+          ls -R docs || true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -41,5 +50,5 @@ jobs:
       id-token: write
 
     steps:
-      - uses: actions/deploy-pages@v4
-        with: {}
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
