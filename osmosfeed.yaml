@@ -2,5 +2,5 @@ cacheUrl: https://niklaskunstleben-lab.github.io/RSS/cache.json
 sources:
   - href: https://blog.rwth-aachen.de/itc/feed
   - href: https://blog.rwth-aachen.de/itc-changes/feed
-  - href: https://maintenance.itc.rwth-aachen.de/ticket/status/messages/feed.rss?locale=de
+  - href: https://maintenance.itc.rwth-aachen.de/ticket/status/messages/feed.rss
   
