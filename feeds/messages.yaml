@@ -1,4 +1,0 @@
-cacheUrl: https://niklaskunstleben-lab.github.io/RSS/messages-cache.json
-
-sources:
-  - href: https://maintenance.itc.rwth-aachen.de/ticket/status/messages/feed.rss
