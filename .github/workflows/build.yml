@@ -15,7 +15,8 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Ensure docs folder exists
-        run: mkdir -p docs
+        run: rm -rf docs
+             mkdir docs
 
       - name: Build ITC Changes
         run: |
