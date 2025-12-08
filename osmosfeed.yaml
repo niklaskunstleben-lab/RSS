@@ -3,7 +3,7 @@
 # https://github.com/osmoscraft/osmosfeed/blob/master/docs/osmosfeed-yaml-reference.md
 #########################
 
-cacheUrl: https://niklaskunstleben-lab.github.io/REPO_NAME/cache.json
+cacheUrl: https://niklaskunstleben-lab.github.io/RSS/cache.json
 sources:
   - href: https://blog.rwth-aachen.de/itc/feed
   - href: https://blog.rwth-aachen.de/itc-changes/feed
