@@ -1,0 +1,8 @@
+{
+  "sources": [
+    "https://blog.rwth-aachen.de/itc/feed"
+  ],
+  "title": "IT Center Blog",
+  "description": "Neueste Beiträge des IT Centers",
+  "link": "/feeds/blog/"
+}
