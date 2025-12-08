@@ -14,6 +14,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Authenticate to GHCR
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u niklaskunstleben-lab --password-stdin
+
       - name: Reset docs folder
         run: |
           rm -rf docs
