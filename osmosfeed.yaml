@@ -1,6 +1,35 @@
-cacheUrl: https://niklaskunstleben-lab.github.io/RSS/cache.json
-sources:
-  - href: https://blog.rwth-aachen.de/itc/feed
-  - href: https://blog.rwth-aachen.de/itc-changes/feed
-  - href: https://maintenance.itc.rwth-aachen.de/ticket/status/messages/feed.rss
-  
+name: Build all feeds
+
+on:
+  schedule:
+    - cron: "0 * * * *"
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install osmosfeed
+        run: npm install -g osmosfeed
+
+      - name: Build ITC feed
+        run: osmosfeed build -c feeds/itc.yaml -o dist/feed-itc
+
+      - name: Build Messages feed
+        run: osmosfeed build -c feeds/messages.yaml -o dist/feed-messages
+
+      - name: Build Changes feed
+        run: osmosfeed build -c feeds/changes.yaml -o dist/feed-changes
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: dist
