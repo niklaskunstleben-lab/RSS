@@ -1,0 +1,8 @@
+{
+  "sources": [
+    "https://maintenance.itc.rwth-aachen.de/ticket/status/messages/feed.rss"
+  ],
+  "title": "IT Center Störungsmeldungen",
+  "description": "Aktuelle Störungsmeldungen",
+  "link": "/feeds/incidents/"
+}
