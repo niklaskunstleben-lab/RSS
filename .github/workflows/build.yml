@@ -14,29 +14,28 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Ensure docs folder exists
-        run: rm -rf docs
-             mkdir docs
+      - name: Reset docs folder
+        run: |
+          rm -rf docs
+          mkdir docs
 
       - name: Build ITC Changes
         run: |
-          npx ghcr.io/osmoscraft/osmosfeed:latest \
+          docker run --rm -v ${PWD}:/app ghcr.io/osmoscraft/osmosfeed:latest \
             build --config feeds/changes/osmosfeed.json --output docs/changes
 
       - name: Build ITC Blog
         run: |
-          npx ghcr.io/osmoscraft/osmosfeed:latest \
+          docker run --rm -v ${PWD}:/app ghcr.io/osmoscraft/osmosfeed:latest \
             build --config feeds/blog/osmosfeed.json --output docs/blog
 
       - name: Build ITC Incidents
         run: |
-          npx ghcr.io/osmoscraft/osmosfeed:latest \
+          docker run --rm -v ${PWD}:/app ghcr.io/osmoscraft/osmosfeed:latest \
             build --config feeds/incidents/osmosfeed.json --output docs/incidents
 
       - name: Verify build output
-        run: |
-          echo "Docs content:"
-          ls -R docs || true
+        run: ls -R docs || true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
